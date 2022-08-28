@@ -1,33 +1,50 @@
 {
   "name": "sust",
   "version": "0.1.0",
-  "private": true,
+  "bugs": "https://github.com/connorjayr/sust/issues",
+  "contributors": [
+    {
+      "name": "Connor Roizman"
+    },
+    {
+      "name": "Jeff Putlock"
+    }
+  ],
+  "scripts": {
+    "start:client": "react-scripts start",
+    "start:server": "cargo watch --exec run --workdir server",
+    "start": "npx concurrently \"npm run start:client\" \"npm run start:server\"",
+    "build:client": "react-scripts build",
+    "build:server": "cargo build --manifest-path=server/Cargo.toml",
+    "build": "npx concurrently \"npm run build:client\" \"npm run build:server\"",
+    "test": "react-scripts test"
+  },
   "dependencies": {
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.3.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.5.2",
-    "@types/node": "^16.11.56",
-    "@types/react": "^18.0.17",
-    "@types/react-dom": "^18.0.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "typescript": "^4.7.4",
-    "web-vitals": "^2.1.4"
+    "react-router-dom": "^6.3.0",
+    "web-vitals": "^3.0.0"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.3.0",
+    "@testing-library/user-event": "^14.4.3",
+    "@types/jest": "^28.1.8",
+    "@types/node": "^18.7.13",
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "@typescript-eslint/eslint-plugin": "^5.35.1",
+    "@typescript-eslint/parser": "^5.35.1",
+    "concurrently": "^7.3.0",
+    "eslint": "^8.23.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "nodemon": "^2.0.19",
+    "prettier": "^2.7.1",
+    "react-scripts": "^5.0.1",
+    "typescript": "^4.7.4"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
+  "private": true,
   "browserslist": {
     "production": [
       ">0.2%",
