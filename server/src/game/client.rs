@@ -88,7 +88,7 @@ impl Handler<ServerMessage> for WsClient {
     }
 }
 
-/// Handle messages from the user
+/// Handle messages from the user.
 impl StreamHandler<Result<ws::Message, ws::ProtocolError>> for WsClient {
     fn handle(&mut self, msg: Result<ws::Message, ws::ProtocolError>, ctx: &mut Self::Context) {
         let msg = match msg {

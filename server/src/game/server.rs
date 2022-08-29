@@ -23,7 +23,7 @@ pub struct WsServer {
 impl WsServer {}
 
 impl Actor for WsServer {
-    /// WsServer is as generic as possible, accepting any type of context.
+    /// [`WsServer`] is as generic as possible, accepting any type of context.
     type Context = Context<Self>;
 }
 

@@ -1,14 +1,15 @@
-//! Define message types between server and clients
+//! Messages that are sent between the server and clients.
+
 use actix::prelude::*;
 
 use crate::game::server::UserId;
 
-/// Message from user to client actor
+/// A message sent from a user to a client actor.
 #[derive(Message)]
 #[rtype(result = "()")]
 pub struct UserMessage(pub String);
 
-/// New connection notification
+/// A message sent from a client actor to the server when a user has established a connection.
 #[derive(Message)]
 #[rtype(result = "()")]
 pub struct Connect {
@@ -16,7 +17,7 @@ pub struct Connect {
     pub user_id: UserId,
 }
 
-/// Connection (intentional) disconnect notification
+/// A message sent from a client actor to the server when a user has intentionally disconnected.
 #[derive(Message)]
 #[rtype(result = "()")]
 pub struct Disconnect {
@@ -24,14 +25,14 @@ pub struct Disconnect {
     pub game_name: Option<String>,
 }
 
-/// Message from client actor to server
+/// A message sent from a client actor to the server.
 #[derive(Message)]
 #[rtype(result = "()")]
 pub struct ClientMessage {
     pub user_id: UserId,
 }
 
-/// Message from server to client actor
+/// A message sent from the server to a client actor.
 #[derive(Message)]
 #[rtype(result = "()")]
 pub struct ServerMessage {
