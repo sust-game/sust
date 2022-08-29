@@ -1,3 +1,3 @@
-pub mod client_actor;
+pub mod client;
 pub mod messages;
-pub mod server_actor;
+pub mod server;

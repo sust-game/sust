@@ -2,9 +2,10 @@ use std::time::{Duration, Instant};
 
 use actix::prelude::*;
 use actix_web_actors::ws;
+use log;
 
 use crate::game::messages::{Connect, Disconnect, ServerMessage};
-use crate::game::server_actor::{SessionInfo, WsServer};
+use crate::game::server::{SessionInfo, WsServer};
 
 const HEARTBEAT_INTERVAL: Duration = Duration::from_secs(5);
 const CLIENT_TIMEOUT: Duration = Duration::from_secs(10);
@@ -32,7 +33,7 @@ impl WsClient {
     fn start_heartbeats(&self, ctx: &mut ws::WebsocketContext<Self>) {
         ctx.run_interval(HEARTBEAT_INTERVAL, move |client, ctx| {
             if Instant::now().duration_since(client.last_heartbeat) > CLIENT_TIMEOUT {
-                println!("Heartbeat timed out, disconnecting.");
+                log::info!("Heartbeat timed out, disconnecting.");
                 client.game_server.do_send(Disconnect {
                     user_id: client.session_info["user_id"].clone(),
                     game_name: client.game_name.clone(),
@@ -112,7 +113,7 @@ impl StreamHandler<Result<ws::Message, ws::ProtocolError>> for WsClient {
                 self.last_heartbeat = Instant::now();
             }
             ws::Message::Binary(_) => {
-                println!("ERROR: Received an unexpected binary");
+                log::error!("Received an unexpected binary");
                 ctx.stop();
             }
             ws::Message::Close(reason) => {

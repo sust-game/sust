@@ -1,3 +1,4 @@
+mod game;
 mod routes;
 
 use std::io;
