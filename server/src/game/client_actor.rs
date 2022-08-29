@@ -3,8 +3,8 @@ use std::time::{Duration, Instant};
 use actix::prelude::*;
 use actix_web_actors::ws;
 
-use super::messages::{Connect, Disconnect, ServerMessage};
-use super::server_actor::{SessionInfo, WsServer};
+use crate::game::messages::{Connect, Disconnect, ServerMessage};
+use crate::game::server_actor::{SessionInfo, WsServer};
 
 const HEARTBEAT_INTERVAL: Duration = Duration::from_secs(5);
 const CLIENT_TIMEOUT: Duration = Duration::from_secs(10);
@@ -111,7 +111,10 @@ impl StreamHandler<Result<ws::Message, ws::ProtocolError>> for WsClient {
             ws::Message::Pong(_) => {
                 self.last_heartbeat = Instant::now();
             }
-            ws::Message::Binary(_) => panic!("Unexpected binary"),
+            ws::Message::Binary(_) => {
+                println!("ERROR: Received an unexpected binary");
+                ctx.stop();
+            }
             ws::Message::Close(reason) => {
                 ctx.close(reason);
                 ctx.stop();

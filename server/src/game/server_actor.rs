@@ -2,7 +2,7 @@ use std::collections::{HashMap, HashSet};
 
 use actix::prelude::*;
 
-use super::messages::*;
+use crate::game::messages::*;
 
 // TODO: replace SessionInfo with a custom struct later
 pub type SessionInfo = HashMap<String, String>;

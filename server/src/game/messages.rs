@@ -1,8 +1,7 @@
+//! Define message types between server and clients
 use actix::prelude::*;
 
-use super::server_actor::UserId;
-
-/// Define message types between server and clients
+use crate::game::server_actor::UserId;
 
 /// Message from user to client actor
 #[derive(Message)]
