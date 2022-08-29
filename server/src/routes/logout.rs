@@ -1,6 +1,8 @@
-use actix_web::{get, HttpResponse, Responder};
+use actix_session::Session;
+use actix_web::{post, HttpResponse, Responder};
 
-#[get("/logout")]
-pub async fn handler() -> impl Responder {
+#[post("/logout")]
+pub async fn post(session: Session) -> impl Responder {
+    session.purge();
     HttpResponse::Ok()
 }
