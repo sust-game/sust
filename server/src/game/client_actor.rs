@@ -9,6 +9,7 @@ use crate::game::server_actor::{SessionInfo, WsServer};
 const HEARTBEAT_INTERVAL: Duration = Duration::from_secs(5);
 const CLIENT_TIMEOUT: Duration = Duration::from_secs(10);
 
+/// An actor which sits between the user and the game server.
 pub struct WsClient {
     game_name: Option<String>,
     game_server: Addr<WsServer>,
@@ -17,7 +18,7 @@ pub struct WsClient {
 }
 
 impl WsClient {
-    /// Creates a new [`WsClient`], an actor which sits between the user and the game server.
+    /// Creates a new [`WsClient`] to interact with a given user session.
     pub fn _new(session: SessionInfo, game_server: Addr<WsServer>) -> Self {
         Self {
             game_name: None,
@@ -78,7 +79,6 @@ impl Actor for WsClient {
     }
 }
 
-/// Handle messages from the server
 impl Handler<ServerMessage> for WsClient {
     type Result = ();
 

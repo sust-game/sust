@@ -22,13 +22,11 @@ pub struct WsServer {
 
 impl WsServer {}
 
-/// Makes WsServer an Actor, allowing it to send and receive messages from other actors
 impl Actor for WsServer {
     /// WsServer is as generic as possible, accepting any type of context.
     type Context = Context<Self>;
 }
 
-/// Defines the behavior when the server receives a new connection request.
 impl Handler<Connect> for WsServer {
     type Result = ();
 
