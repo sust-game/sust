@@ -20,7 +20,15 @@ pub struct WsServer {
     games: HashMap<String, Game>,
 }
 
-impl WsServer {}
+impl WsServer {
+    /// Creates a new [`WsServer`].
+    pub fn new() -> Self {
+        Self {
+            users: HashMap::new(),
+            games: HashMap::new(),
+        }
+    }
+}
 
 impl Actor for WsServer {
     /// [`WsServer`] is as generic as possible, accepting any type of context.
