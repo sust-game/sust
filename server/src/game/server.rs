@@ -21,6 +21,12 @@ pub struct WsServer {
     games: HashMap<String, Game>,
 }
 
+impl WsServer {
+    pub fn new() -> Self {
+        WsServer::default()
+    }
+}
+
 impl Actor for WsServer {
     /// [`WsServer`] is as generic as possible, accepting any type of context.
     type Context = Context<Self>;
