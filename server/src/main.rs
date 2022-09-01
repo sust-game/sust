@@ -29,7 +29,7 @@ fn get_session_secret() -> Key {
 async fn main() -> io::Result<()> {
     env_logger::init();
 
-    let game_server = WsServer::new().start();
+    let game_server = WsServer::default().start();
 
     HttpServer::new(move || {
         App::new()
