@@ -3,9 +3,12 @@ mod routes;
 
 use std::io;
 
+use actix::Actor;
 use actix_files::Files;
 use actix_session::{storage::CookieSessionStore, SessionMiddleware};
 use actix_web::{cookie::Key, middleware::Logger, web, App, HttpServer};
+
+use crate::game::server::WsServer;
 
 /// Returns a secret key that is used to encrypt the session cookie stored by the client.
 ///
@@ -26,8 +29,11 @@ fn get_session_secret() -> Key {
 async fn main() -> io::Result<()> {
     env_logger::init();
 
-    HttpServer::new(|| {
+    let game_server = WsServer::default().start();
+
+    HttpServer::new(move || {
         App::new()
+            .app_data(web::Data::new(game_server.clone()))
             .wrap(Logger::default())
             .wrap(
                 SessionMiddleware::builder(CookieSessionStore::default(), get_session_secret())

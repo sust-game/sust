@@ -15,12 +15,18 @@ struct Game {
 }
 
 /// The game server which manages the active games.
+#[derive(Default)]
 pub struct WsServer {
     users: HashMap<UserId, Recipient<ServerMessage>>,
     games: HashMap<String, Game>,
 }
 
-impl WsServer {}
+impl WsServer {
+    /// Creates a new [`WsServer`].
+    pub fn new() -> Self {
+        WsServer::default()
+    }
+}
 
 impl Actor for WsServer {
     /// [`WsServer`] is as generic as possible, accepting any type of context.
