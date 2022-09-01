@@ -22,6 +22,7 @@ pub struct WsServer {
 }
 
 impl WsServer {
+    /// Creates a new [`WsServer`].
     pub fn new() -> Self {
         WsServer::default()
     }
