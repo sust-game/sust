@@ -28,10 +28,9 @@ impl UserManager {
                 // Lookup the user from the database.
                 let username = "".to_owned();
 
-                //
+                // Insert the user into the active users map.
                 let user = User::new(username, user_id.clone(), address);
                 self.active_users.insert(user_id, user);
-                todo!()
             }
         };
     }
