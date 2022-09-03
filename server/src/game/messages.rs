@@ -2,7 +2,7 @@
 
 use actix::prelude::*;
 
-use crate::game::server::UserId;
+use crate::game::user::UserId;
 
 /// A message sent from a user to a client actor.
 #[derive(Message)]
