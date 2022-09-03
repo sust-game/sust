@@ -14,12 +14,15 @@ pub type SessionInfo = HashMap<String, String>;
 #[derive(Default)]
 pub struct WsServer {
     user_manager: UserManager,
+    #[allow(dead_code)]
     game_manager: GameManager,
+    #[allow(dead_code)]
     main_lobby: Lobby,
 }
 
 impl WsServer {
     /// Creates a new [`WsServer`].
+    #[allow(dead_code)]
     pub fn new() -> Self {
         WsServer::default()
     }

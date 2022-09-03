@@ -2,6 +2,7 @@
 
 use actix::prelude::*;
 
+use crate::game::chat::LobbyId;
 use crate::game::user::UserId;
 
 /// A message sent from a user to a client actor.
@@ -30,6 +31,7 @@ pub struct Disconnect {
 #[rtype(result = "()")]
 pub struct ClientMessage {
     pub user_id: UserId,
+    pub action: UserAction,
 }
 
 /// A message sent from the server to a client actor.
@@ -37,4 +39,9 @@ pub struct ClientMessage {
 #[rtype(result = "()")]
 pub struct ServerMessage {
     // TODO: Flesh this out
+}
+
+pub enum UserAction {
+    #[allow(dead_code)]
+    ChatMessage { lobby_id: LobbyId, text: String },
 }

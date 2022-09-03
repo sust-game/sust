@@ -19,8 +19,9 @@ pub struct WsClient {
 }
 
 impl WsClient {
+    #[allow(dead_code)]
     /// Creates a new [`WsClient`] to interact with a given user session.
-    pub fn _new(session: SessionInfo, game_server: Addr<WsServer>) -> Self {
+    pub fn new(session: SessionInfo, game_server: Addr<WsServer>) -> Self {
         Self {
             game_name: None,
             game_server,

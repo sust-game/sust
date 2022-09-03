@@ -16,7 +16,7 @@ pub struct UserManager {
 impl UserManager {
     pub fn connect_user(self: &mut Self, user_id: UserId, address: Recipient<ServerMessage>) {
         match self.active_users.get(&user_id) {
-            Some(user) => {
+            Some(_user) => {
                 // Some() is returned if the user already exists, meaning a connection must already
                 // exist.
 
@@ -41,9 +41,13 @@ impl UserManager {
 }
 
 struct User {
+    #[allow(dead_code)]
     name: String,
+    #[allow(dead_code)]
     id: UserId,
+    #[allow(dead_code)]
     address: Recipient<ServerMessage>,
+    #[allow(dead_code)]
     current_game: Option<GameId>,
 }
 
