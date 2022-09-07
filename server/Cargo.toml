@@ -4,6 +4,7 @@ version = "0.1.0"
 authors = ["Connor Roizman", "Jeff Putlock"]
 edition = "2021"
 rust-version = "1.63"
+description = "Web server for Sust, a role-based murder mystery game"
 repository = "https://github.com/connorjayr/sust"
 publish = false
 
@@ -14,7 +15,8 @@ actix-session = { version = "0.7", features = ["cookie-session"] }
 actix-web = "4"
 actix-web-actors = "4"
 base64 = "0.13"
-dotenv = "0.15"
+clap = { version = "3", features = ["derive"] }
+config = "0.13"
 env_logger = "0.9"
 log = "0.4"
 serde = { version = "1", features = ["derive"] }
