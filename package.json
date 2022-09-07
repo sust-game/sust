@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "start:client": "react-scripts start",
-    "start:server": "RUST_ENV=development RUST_LOG=info cargo watch --exec \"run -- --port 3001\" --workdir server",
+    "start:server": "RUST_ENV=development cargo watch --exec \"run -- --port 3001\" --workdir server",
     "start": "npx concurrently \"npm run start:client\" \"npm run start:server\"",
     "build:client": "react-scripts build",
     "build:server": "cargo build --manifest-path=server/Cargo.toml --release",
