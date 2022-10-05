@@ -49,6 +49,8 @@ async fn main() -> io::Result<()> {
 
     let config = Config::new().expect("cannot read configuration");
 
+    let db = deadpool_postgres::Config::create_pool(None, tokio_postgres::NoTls);
+
     let game_server = WsServer::new().start();
 
     HttpServer::new(move || {
